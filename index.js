@@ -40,18 +40,30 @@ app.post('/auth/register', registerValidation, async (req, res) => {
 
         const password = req.body.password;
         const salt = await bcrypt.genSalt(10);
-        const passwordHash = await bcrypt.hash(password, salt);
+        const hash = await bcrypt.hash(password, salt);
 
         const doc = new userModel({
             email: req.body.email,
             fullName: req.body.fullName,
-            passwordHash,
+            passwordHash: hash,
             avatarURL: req.body.avatarURL
         });
 
         const user = await doc.save();
 
-        res.json(user);
+        const token = jwt.sign({
+            _id: user._id
+        }, 'secretKey123',
+        {
+            expiresIn: '1d'
+        })
+        
+        const { passwordHash, ... userData } = user._doc
+
+        res.json({
+           ... userData,
+            token,
+        });
     }
     catch (err) {
         console.log(err)
