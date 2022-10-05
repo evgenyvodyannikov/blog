@@ -21,7 +21,7 @@ app.post('/auth/login', (req, res) => {
     const token = jwt.sign({
         email: req.body.email,
         fullName: "Some Name",
-    }, 'secretKey')
+    }, 'secretKey123')
 
     res.json({
         success: true,
