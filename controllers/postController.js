@@ -88,7 +88,7 @@ export const remove = async (req, res) => {
           message: "Статья не найдена",
         });
       }
-      
+
       res.json({
         success: true,
       });
@@ -102,3 +102,28 @@ export const remove = async (req, res) => {
   }
 };
 
+export const update = async (req, res) => {
+  try {
+    const post_id = req.params.id
+
+    await postModel.updateOne({
+      _id: post_id,
+    }, {
+      title: req.body.title,
+      text: req.body.text,
+      imageUrl: req.body.imageUrl,
+      tags: req.body.tags,
+      user: req.userId,
+    });
+
+      res.json({
+        success: true,
+      });
+
+  } catch (err) {
+    console.log(err);
+    res.status(500).json({
+      message: 'Не удалось обновить статью',
+    });
+  }
+};
