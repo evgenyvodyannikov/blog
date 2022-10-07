@@ -1,7 +1,7 @@
 import express from "express";
 import mongoose from "mongoose";
 
-import { registerValidation } from "./validations/auth.js";
+import { loginValidation, registerValidation } from "./validation.js";
 import checkAuth from "./utils/checkAuth.js";
 import * as userController from "./controllers/userController.js"
 
@@ -17,7 +17,7 @@ app.use(express.json());
 
 app.post("/auth/register", registerValidation, userController.register);
 
-app.post("/auth/login", userController.login);
+app.post("/auth/login", loginValidation, userController.login);
 
 app.post("/auth/me", checkAuth, userController.aboutMe)
 
