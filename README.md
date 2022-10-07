@@ -1,3 +1,5 @@
+![NodeJS CI](https://github.com/evgenyvodyannikov/blog/actions/workflows/node.js.yml/badge.svg)
+
 # Pet-project "Blog" on MERN stack
 
 ### What will be emplemented:
