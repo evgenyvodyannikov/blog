@@ -52,8 +52,8 @@ export const getOne = async (req, res) => {
             message: "Не удалось получить статью",
           });
         }
-        if(!doc){
-            console.log(err);
+        if (!doc) {
+          console.log(err);
           return res.status(404).json({
             message: "Статья не найдена",
           });
@@ -68,3 +68,37 @@ export const getOne = async (req, res) => {
     });
   }
 };
+
+export const remove = async (req, res) => {
+  try {
+    const post_id = req.params.id
+
+    postModel.findByIdAndDelete({
+      _id: post_id,
+    }, (err, doc) => {
+      if (err) {
+        console.log(err);
+        return res.status(500).json({
+          message: 'Не удалось удалить статью',
+        });
+      }
+
+      if (!doc) {
+        return res.status(404).json({
+          message: "Статья не найдена",
+        });
+      }
+      
+      res.json({
+        success: true,
+      });
+    });
+
+  } catch (err) {
+    console.log(err);
+    res.status(500).json({
+      message: 'Не удалось удалить статью',
+    });
+  }
+};
+
