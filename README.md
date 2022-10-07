@@ -1,4 +1,4 @@
-![NodeJS CI](https://github.com/evgenyvodyannikov/blog/actions/workflows/node.js.yml/badge.svg)
+![NodeJS CI](https://github.com/evgenyvodyannikov/blog/actions/workflows/node.js.yml/badge.svg) [![Quality Gate Status](https://sonarcloud.io/api/project_badges/measure?project=evgenyvodyannikov_blog&metric=alert_status)](https://sonarcloud.io/summary/new_code?id=evgenyvodyannikov_blog)
 
 # Pet-project "Blog" on MERN stack
 
