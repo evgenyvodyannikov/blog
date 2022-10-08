@@ -4,6 +4,7 @@
 
 ### What will be emplemented:
 
+
 1. Backend on NodeJS
 2. Auth and register
 3. Encrypt user data (password, etc)
