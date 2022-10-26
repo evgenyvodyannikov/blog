@@ -116,14 +116,32 @@ export const update = async (req, res) => {
       user: req.userId,
     });
 
-      res.json({
-        success: true,
-      });
+    res.json({
+      success: true,
+    });
 
   } catch (err) {
     console.log(err);
     res.status(500).json({
       message: 'Не удалось обновить статью',
+    });
+  }
+};
+
+export const getLastTags = async (req, res) => {
+  try {
+    const posts = await postModel.find().limit(5).exec();
+
+    const tags = posts
+      .map(obj => obj.tags)
+      .flat()
+      .slice(0, 5);
+
+    res.json(tags);
+  } catch (err) {
+    console.log(err);
+    res.status(500).json({
+      message: "Не удалось получить тэги",
     });
   }
 };
