@@ -40,7 +40,7 @@ export const getOne = async (req, res) => {
         id: post_id,
       },
       {
-        $inc: { viewsCount: 1 },
+        $inc: { viewCount: 1 },
       },
       {
         returnDocument: "after",
