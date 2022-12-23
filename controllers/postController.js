@@ -37,7 +37,7 @@ export const getOne = async (req, res) => {
     const post_id = req.params.id;
     postModel.findOneAndUpdate(
       {
-        id: post_id,
+        _id: post_id,
       },
       {
         $inc: { viewCount: 1 },
