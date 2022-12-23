@@ -8,9 +8,7 @@ import { getOne, getAll, getLastTags, create, remove, update, register, login, a
 import { checkAuth, handleValidationsErrors } from "./utils/index.js";
 
 mongoose
-  .connect(
-    "mongodb+srv://admin:rIbplCZpPavfbwkA@cluster0.1cogdfr.mongodb.net/blog?retryWrites=true&w=majority"
-  )
+  .connect(process.env.MONGODB_URI)
   .then(() => console.log("DB OK"))
   .catch((err) => console.log("DB error:", err));
 const app = express();
@@ -46,7 +44,7 @@ app.post("/posts", checkAuth, postCreateValidation, handleValidationsErrors, cre
 app.delete("/posts/:id", checkAuth, remove)
 app.patch("/posts/:id", checkAuth, postCreateValidation, handleValidationsErrors, update)
 
-app.listen(4444, (err) => {
+app.listen(process.env.PORT || 4444, (err) => {
   if (err) {
     return console.log("Server error: ", err);
   }
