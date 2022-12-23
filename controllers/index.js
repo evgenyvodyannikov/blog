@@ -1,2 +1,2 @@
-export * as userController from "./userController.js"
-export * as postController from "./postController.js"
+export { login, register, aboutMe } from "./userController.js"
+export { create, getAll, getOne, remove, update, getLastTags } from "./postController.js"
