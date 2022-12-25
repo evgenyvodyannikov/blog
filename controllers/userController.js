@@ -89,15 +89,14 @@ export const login = async (req, res) => {
 
 export const aboutMe = async (req, res) => {
     try {
-        const user = await userModel.findOne(req.userId)
-
+        const user = await userModel.findOne({ _id: req.userId})
+        
         if(!user){
             return res.status(404).json({
                 message: "Пользователь не найден"
             }
             )
         }
-
         const { passwordHash, ...userData } = user._doc;
 
         res.json({
